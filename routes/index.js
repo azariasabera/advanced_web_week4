@@ -39,6 +39,7 @@ router.get("/recipe/:food", (req, res)=>{
     let food = recipes.Default;
     food.name = name;
     res.json(food);
+    // or let food = { ...recipes.Default, name: name }; shallow copy of Default object
   }
 })
 
