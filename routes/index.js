@@ -43,4 +43,18 @@ router.get("/recipe/:food", (req, res)=>{
   }
 })
 
+router.post("/recipe/", (req, res)=>{
+  try {
+    let name = req.body.name;
+    let instructions = req.body.instructions;
+    let ingredients = req.body.ingredients;
+    recipes[name] = { name, instructions, ingredients };
+    res.json(recipes[name]);
+  } catch (error) {
+    res.status(400).json({
+      msg: "Invalid request"
+    });
+}
+});
+
 module.exports = router;

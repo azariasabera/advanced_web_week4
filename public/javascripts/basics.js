@@ -1,10 +1,16 @@
 let nameToSearch = document.getElementById('food-name');
 let nameToAdd = document.getElementById('name-text');
 
+let ingredientInput = document.getElementById('ingredients-text');
+let instructionInput = document.getElementById('instructions-text');
+
 let searchButton = document.getElementById('search');
 let addButton = document.getElementById('submit');
 let addIngredient = document.getElementById('add-ingredient');
 let addInstruction = document.getElementById('add-instruction');
+
+let instructionList = [];
+let ingredientList = [];
 
 searchButton.addEventListener('click', ()=>{
     const name = nameToSearch.value; 
@@ -46,6 +52,48 @@ function createElements(data){
         displayDiv.appendChild(p);
     });
 }
+
+addIngredient.addEventListener('click', ()=>{
+    let ingredient = ingredientInput.value;
+    ingredientList.push(ingredient);
+    console.log(ingredientList);
+});
+
+addInstruction.addEventListener('click', ()=>{
+    let instruction = instructionInput.value;
+    instructionList.push(instruction);
+    console.log(instructionList);
+});
+
+
+addButton.addEventListener('click', ()=>{
+    let name = nameToAdd.value;
+    let recipe = {
+        name: name,
+        ingredients: ingredientList,
+        instructions: instructionList
+    };
+    try {
+    fetch("/recipe/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(recipe)
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        createElements(data);
+        console.log(data);
+        instructionList = [];
+        ingredientList = [];
+    })}
+    catch (error) {
+        console.log('error');
+    }
+});
 
 /*
 Code  11-26 can be written using async:
