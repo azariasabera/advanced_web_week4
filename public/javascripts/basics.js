@@ -24,6 +24,7 @@ searchButton.addEventListener('click', ()=>{
 function createElements(data){
     console.log(data);
     let displayDiv = document.getElementById('displayDiv');
+    displayDiv.innerHTML = '';
     let h1 = document.createElement('h1');
     //h1.textContent = data.name.charAt(0).toUpperCase() + data.name.slice(1);
     h1.textContent = data.name;
