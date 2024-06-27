@@ -25,7 +25,8 @@ function createElements(data){
     console.log(data);
     let displayDiv = document.getElementById('displayDiv');
     let h1 = document.createElement('h1');
-    h1.textContent = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+    //h1.textContent = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+    h1.textContent = data.name;
     displayDiv.appendChild(h1);
     let h2_1 = document.createElement('h2');
     h2_1.textContent = "Ingredients";

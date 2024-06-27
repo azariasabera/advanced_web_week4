@@ -10,13 +10,13 @@ router.get('/', function(req, res, next) {
 
 // Since I had no source for the recipes, I manually added some.
 let recipes = {
-  pizza: {
-    name: "pizza",
+  Pizza: {
+    name: "Pizza",
     instructions: ["Preheat oven to 475°F", "Spread the dough", "Add toppings", "Bake for 10-15 minutes"],
     ingredients: ["dough", "sauce", "cheese", "toppings"]
   },
-  pasta: {
-    name: "pasta",
+  Pasta: {
+    name: "Pasta",
     instructions: ["Boil water", "Add pasta", "Cook for 8-10 minutes", "Drain and serve"],
     ingredients: ["pasta", "water", "salt"]
   }
