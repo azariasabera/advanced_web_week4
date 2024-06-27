@@ -9,6 +9,9 @@ let addButton = document.getElementById('submit');
 let addIngredient = document.getElementById('add-ingredient');
 let addInstruction = document.getElementById('add-instruction');
 
+let imageInput = document.getElementById('image-input');
+let form = document.getElementById('recipe-form');
+
 let instructionList = [];
 let ingredientList = [];
 
@@ -73,6 +76,17 @@ addButton.addEventListener('click', ()=>{
         ingredients: ingredientList,
         instructions: instructionList
     };
+
+    // When the submit button is pressed, it should send the image as FormData to route "/images". 
+    // Put the images to formdata as a list to key "images"
+
+    /* const formData = new FormData();
+    for (let i = 0; i < imageInput.files.length; i++) {
+        formData.append('images', imageInput.files[i]);
+    }
+    formData.append('recipe', JSON.stringify(recipe));
+ */
+
     try {
     fetch("/recipe/", {
         method: "POST",
@@ -94,6 +108,30 @@ addButton.addEventListener('click', ()=>{
         console.log('error');
     }
 });
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    for (let i = 0; i < imageInput.files.length; i++) {
+        formData.append('images', imageInput.files[i]);
+    }
+    // formData.append('recipe', JSON.stringify(recipe));
+    console.log(Array.from(formData));
+    fetch("/images", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+    });
+});
+
+
+
+
+
+
 
 /*
 Code  11-26 can be written using async:

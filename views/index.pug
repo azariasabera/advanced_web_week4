@@ -7,7 +7,10 @@ block content
     div#searchDiv
       h2 Search for a recipe
       input(type="text" id="food-name" placeholder="Enter food name")
-      button#search(type="submit") Search 
+      button#search(type="submit") Search
+      
+    div#displayDiv
+
     div#addDiv
       h2 Add a new recipe
       input(type="text" id="name-text" placeholder="Enter food name")
@@ -22,6 +25,8 @@ block content
       br
       button#add-instruction Add instruction
       br
-      br
-      button#submit(type="submit")  Submit
-    div#displayDiv
+      form(action="" method="post" id="recipe-form" enctype="multipart/form-data")  
+        input#image-input(type="file" accept="image/*" multiple="true" capture="camera") 
+        br
+        button#submit(type="submit")  Submit
+      

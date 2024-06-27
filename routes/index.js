@@ -57,4 +57,8 @@ router.post("/recipe/", (req, res)=>{
 }
 });
 
+router.post("/images", (req, res) => {
+  res.json({msg: "Image uploaded"});
+});
+
 module.exports = router;
