@@ -19,6 +19,12 @@ let recipes = {
     name: "Pasta",
     instructions: ["Boil water", "Add pasta", "Cook for 8-10 minutes", "Drain and serve"],
     ingredients: ["pasta", "water", "salt"]
+  },
+
+  Default: {
+    name: "Default",
+    instructions: ["No recipe found"],
+    ingredients: ["No ingredients found"]
   }
 };
 
@@ -30,7 +36,9 @@ router.get("/recipe/:food", (req, res)=>{
     res.json(food);
   }
   else{
-    res.status(404).json({msg: "Food not found"});
+    let food = recipes.Default;
+    food.name = name;
+    res.json(food);
   }
 })
 
