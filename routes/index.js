@@ -12,8 +12,13 @@ let recipes = [];
 
 router.get("/recipe/:food", (req, res)=>{
   let name = req.params.food;
-  let food = recipes[name];
-  
+  let food = recipes.find(recipe => recipe.name === name);
+  if(food){
+    res.json(food);
+  }
+  else{
+    res.status(404).json({msg: "Recipe not found"});
+  }
 });
 
 router.post("/recipe/", (req, res)=>{
@@ -30,7 +35,7 @@ router.post("/recipe/", (req, res)=>{
 
     recipes.push(recipe);
     res.json(recipe);
-    
+
   } catch (error) {
     res.status(400).json({
       msg: "Invalid request"
