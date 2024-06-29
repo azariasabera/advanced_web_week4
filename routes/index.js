@@ -9,10 +9,10 @@ router.get('/', function(req, res, next) {
 // My code
 
 let recipes = [
-  {name: "Pasta", instructions: "Boil water, add pasta, cook for 10 minutes", ingredients: ["Pasta", "Water"]},
+  /*{name: "Pasta", instructions: "Boil water, add pasta, cook for 10 minutes", ingredients: ["Pasta", "Water"]},
  {name: 'Tikka_Masala', instructions: 'Boil water, add pasta, cook for 10 minutes', ingredients: ['Pasta', 'Water']},
  {name: 'Lasagna', instructions: 'Boil water, add pasta, cook for 10 minutes', ingredients: ['Pasta', 'Water']},
-];
+*/];
 
 router.get("/recipe/:food", (req, res)=>{
   let name = req.params.food;
