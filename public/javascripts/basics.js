@@ -15,7 +15,70 @@ let form = document.getElementById('recipe-form');
 let instructionList = [];
 let ingredientList = [];
 
-//searchButton.addEventListener('click', ()=>{
+form.addEventListener('submit', (e) => {
+    // Here I will send both the recipe and the images
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    // Fetching the recipe data
+    let name = nameToAdd.value;
+    let recipe = {
+        name: name,
+        ingredients: ingredientList,
+        instructions: instructionList
+    };
+
+    try {
+        fetch("/recipe/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(recipe)
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            createElements(data);
+            console.log(data);
+            instructionList = [];
+            ingredientList = [];
+        })}
+    catch (error) {
+        console.log('error');
+    }
+    
+    // Wrapping the images in a FormData object and Fetching the images
+    for (let i = 0; i < imageInput.files.length; i++) {
+        formData.append('images', imageInput.files[i]);
+        console.log(imageInput.files[i]);
+    }
+
+    fetch("/images", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+        fetchData();
+    });
+});
+
+
+addIngredient.addEventListener('click', ()=>{
+    let ingredient = ingredientInput.value;
+    ingredientList.push(ingredient);
+    console.log(ingredientList);
+});
+
+addInstruction.addEventListener('click', ()=>{
+    let instruction = instructionInput.value;
+    instructionList.push(instruction);
+    console.log(instructionList);
+});
+
 function fetchData(){
     const name = nameToAdd.value; 
     fetch("/recipe/" + name)
@@ -55,86 +118,7 @@ function createElements(data){
         p.textContent = element;
         displayDiv.appendChild(p);
     });
-}
-
-addIngredient.addEventListener('click', ()=>{
-    let ingredient = ingredientInput.value;
-    ingredientList.push(ingredient);
-    console.log(ingredientList);
-});
-
-addInstruction.addEventListener('click', ()=>{
-    let instruction = instructionInput.value;
-    instructionList.push(instruction);
-    console.log(instructionList);
-});
-
-
-addButton.addEventListener('click', ()=>{
-    let name = nameToAdd.value;
-    let recipe = {
-        name: name,
-        ingredients: ingredientList,
-        instructions: instructionList
-    };
-
-    // When the submit button is pressed, it should send the image as FormData to route "/images". 
-    // Put the images to formdata as a list to key "images"
-
-    /* const formData = new FormData();
-    for (let i = 0; i < imageInput.files.length; i++) {
-        formData.append('images', imageInput.files[i]);
-    }
-    formData.append('recipe', JSON.stringify(recipe));
- */
-
-    try {
-    fetch("/recipe/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(recipe)
-    })
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        createElements(data);
-        console.log(data);
-        instructionList = [];
-        ingredientList = [];
-    })}
-    catch (error) {
-        console.log('error');
-    }
-});
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    for (let i = 0; i < imageInput.files.length; i++) {
-        formData.append('images', imageInput.files[i]);
-        console.log(imageInput.files[i]);
-    }
-    // formData.append('recipe', JSON.stringify(recipe));
-    console.log(Array.from(formData));
-    fetch("/images", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data);
-        fetchData();
-    });
-});
-
-
-
-
-
-
+};
 
 /*
 Code  11-26 can be written using async:
