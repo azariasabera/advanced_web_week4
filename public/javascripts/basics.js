@@ -100,27 +100,36 @@ function createElements(data){
     let displayDiv = document.getElementById('displayDiv');
     displayDiv.innerHTML = '';
     let h1 = document.createElement('h1');
-    //h1.textContent = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+    h1.textContent = data.name.charAt(0).toUpperCase() + data.name.slice(1);
     h1.textContent = data.name;
     displayDiv.appendChild(h1);
     let h2_1 = document.createElement('h2');
     h2_1.textContent = "Ingredients";
     displayDiv.appendChild(h2_1);
+
+    let ol1 = document.createElement('ul');
+
     data.ingredients.forEach(element => {
-        let p = document.createElement('p');
-        p.textContent = element;
-        displayDiv.appendChild(p);
+        let li = document.createElement('li');
+        li.textContent = element;
+        ol1.appendChild(li);
     });
+    displayDiv.appendChild(ol1);
+
     let h2_2 = document.createElement('h2');
     h2_2.textContent = "Instructions";
     displayDiv.appendChild(h2_2);
-    data.instructions.forEach(element => {
-        let p = document.createElement('p');
-        p.textContent = element;
-        displayDiv.appendChild(p);
-    });
-};
 
+    let ol = document.createElement('ol');
+
+    data.instructions.forEach(element => {
+        let li = document.createElement('li');
+        li.textContent = element;
+        ol.appendChild(li);
+    });
+
+    displayDiv.appendChild(ol);
+};
 /*
 Code  11-26 can be written using async:
   try {

@@ -8,11 +8,7 @@ router.get('/', function(req, res, next) {
 
 // My code
 
-let recipes = [
-  /*{name: "Pasta", instructions: "Boil water, add pasta, cook for 10 minutes", ingredients: ["Pasta", "Water"]},
- {name: 'Tikka_Masala', instructions: 'Boil water, add pasta, cook for 10 minutes', ingredients: ['Pasta', 'Water']},
- {name: 'Lasagna', instructions: 'Boil water, add pasta, cook for 10 minutes', ingredients: ['Pasta', 'Water']},
-*/];
+let recipes = [];
 
 router.get("/recipe/:food", (req, res)=>{
   let name = req.params.food;
@@ -21,12 +17,12 @@ router.get("/recipe/:food", (req, res)=>{
     res.json(food);
   }
   else{
-    /*let defaultResponse = { 
+    let defaultResponse = { 
       name: name,
       instructions: "Default instructions",
       ingredients: ["Default ingredients"]
     };
-    res.json(defaultResponse);*/
+    res.json(defaultResponse);
     res.status(404).json({msg: "Recipe not found"});
   }
 });
