@@ -15,12 +15,7 @@ let form = document.getElementById('recipe-form');
 let instructionList = [];
 let ingredientList = [];
 
-form.addEventListener('submit', (e) => {
-    // Here I will send both the recipe and the images
-    e.preventDefault();
-    const formData = new FormData(form);
-
-    // Fetching the recipe data
+addButton.addEventListener('click', ()=>{
     let name = nameToAdd.value;
     let recipe = {
         name: name,
@@ -48,6 +43,12 @@ form.addEventListener('submit', (e) => {
     catch (error) {
         console.log('error');
     }
+});
+
+form.addEventListener('submit', (e) => {
+ 
+    e.preventDefault();
+    const formData = new FormData(form);
     
     // Wrapping the images in a FormData object and Fetching the images
     for (let i = 0; i < imageInput.files.length; i++) {
