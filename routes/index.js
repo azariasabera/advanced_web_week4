@@ -17,7 +17,12 @@ router.get("/recipe/:food", (req, res)=>{
     res.json(food);
   }
   else{
-    res.status(404).json({msg: "Recipe not found"});
+    let defaultResponse = { 
+      name: name,
+      instructions: "Default instructions",
+      ingredients: ["Default ingredients"]
+    };
+    res.json(defaultResponse);
   }
 });
 
