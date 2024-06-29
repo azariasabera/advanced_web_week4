@@ -3,30 +3,45 @@ extends layout
 block content
   //h1= title
   //p Welcome to #{title}
-  div
-    div#searchDiv
+
+  <nav class="pink darken-2">
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo left">Recipes</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+      //<ul class="right hide-on-med-and-down">
+        <li><a href="#">Sass</a></li>
+        <li><a href="#">Components</a></li>
+        <li><a href="#">Javascript</a></li>
+        <li><a href="#">Mobile</a></li>
+      //</ul>
+    </div>
+  </nav>
+
+
+  div(class="container")
+    //div#searchDiv
       h2 Search for a recipe
       input(type="text" id="food-name" placeholder="Enter food name")
       button#search(type="submit") Search
       
-    div#displayDiv
+    div#displayDiv(class="col")
 
-    div#addDiv
-      h2 Add a new recipe
+    div#addDiv(class="col")
+      p Name
       input(type="text" id="name-text" placeholder="Enter food name")
       h4 Ingredients 
       textarea#ingredients-text(name="") 
       br
-      button#add-ingredient Add ingredient
+      button#add-ingredient(class="btn") Add ingredient
       br
       br
       h4 Instructions 
       textarea#instructions-text(name="")
       br
-      button#add-instruction Add instruction
+      button#add-instruction(class="btn") Add instruction
       br
       form(action="" method="post" id="recipe-form" enctype="multipart/form-data")  
         input#image-input(type="file" accept="image/*" multiple="true" capture="camera") 
         br
-        button#submit(type="submit")  Submit
+        button#submit(type="submit" class="btn")  Submit
       

@@ -1,10 +1,10 @@
-let nameToSearch = document.getElementById('food-name');
+//let nameToSearch = document.getElementById('food-name');
 let nameToAdd = document.getElementById('name-text');
 
 let ingredientInput = document.getElementById('ingredients-text');
 let instructionInput = document.getElementById('instructions-text');
 
-let searchButton = document.getElementById('search');
+//let searchButton = document.getElementById('search');
 let addButton = document.getElementById('submit');
 let addIngredient = document.getElementById('add-ingredient');
 let addInstruction = document.getElementById('add-instruction');
@@ -15,8 +15,9 @@ let form = document.getElementById('recipe-form');
 let instructionList = [];
 let ingredientList = [];
 
-searchButton.addEventListener('click', ()=>{
-    const name = nameToSearch.value; 
+//searchButton.addEventListener('click', ()=>{
+function fetchData(){
+    const name = nameToAdd.value; 
     fetch("/recipe/" + name)
     .then(response => {
         return response.json();  
@@ -28,7 +29,7 @@ searchButton.addEventListener('click', ()=>{
     .catch(error => {
         console.log(error)
     });
-});
+};
 
 function createElements(data){
     console.log(data);
@@ -114,6 +115,7 @@ form.addEventListener('submit', (e) => {
     const formData = new FormData(form);
     for (let i = 0; i < imageInput.files.length; i++) {
         formData.append('images', imageInput.files[i]);
+        console.log(imageInput.files[i]);
     }
     // formData.append('recipe', JSON.stringify(recipe));
     console.log(Array.from(formData));
@@ -124,6 +126,7 @@ form.addEventListener('submit', (e) => {
     .then(response => response.text())
     .then(data => {
         console.log(data);
+        fetchData();
     });
 });
 
