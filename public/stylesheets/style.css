@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+#hr {
+  border: 0;
+  height: 3px;  
+  color: black;
+  background-color: chartreuse;
+  
+}
+

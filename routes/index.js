@@ -8,7 +8,11 @@ router.get('/', function(req, res, next) {
 
 // My code
 
-let recipes = [];
+let recipes = [{ 
+  name : 'Pizza',
+  instructions: ['Make the dough', 'add the toppings', 'bake in the oven', 'Enjoy!'],
+  ingredients: ['flour', 'tomato', 'cheese', 'pepperoni']
+}];
 
 router.get("/recipe/:food", (req, res)=>{
   let name = req.params.food;
@@ -23,7 +27,6 @@ router.get("/recipe/:food", (req, res)=>{
       ingredients: ["Default ingredients"]
     };
     res.json(defaultResponse);
-    res.status(404).json({msg: "Recipe not found"});
   }
 });
 
@@ -40,8 +43,6 @@ router.post("/recipe/", (req, res)=>{
     };
 
     recipes.push(recipe);
-    console.log('first')
-    console.log(recipes);
     res.json(recipe);
 
   } catch (error) {

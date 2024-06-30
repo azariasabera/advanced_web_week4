@@ -1,10 +1,9 @@
-//let nameToSearch = document.getElementById('food-name');
 let nameToAdd = document.getElementById('name-text');
+nameToAdd.value = 'Pizza'; // default value for Task 2
 
 let ingredientInput = document.getElementById('ingredients-text');
 let instructionInput = document.getElementById('instructions-text');
 
-//let searchButton = document.getElementById('search');
 let addButton = document.getElementById('submit');
 let addIngredient = document.getElementById('add-ingredient');
 let addInstruction = document.getElementById('add-instruction');
@@ -67,7 +66,6 @@ form.addEventListener('submit', (e) => {
     });
 });
 
-
 addIngredient.addEventListener('click', ()=>{
     let ingredient = ingredientInput.value;
     ingredientList.push(ingredient);
@@ -96,20 +94,18 @@ function fetchData(){
 };
 
 function createElements(data){
-    console.log(data);
     let displayDiv = document.getElementById('displayDiv');
-    //displayDiv.innerHTML = '';
+    displayDiv.innerHTML = '';
+
     let h1 = document.createElement('h1');
     h1.textContent = data.name.charAt(0).toUpperCase() + data.name.slice(1);
-
-    h1.textContent = data.name;
     displayDiv.appendChild(h1);
+    
     let h2_1 = document.createElement('h2');
     h2_1.textContent = "Ingredients";
     displayDiv.appendChild(h2_1);
 
-    let ol1 = document.createElement('ul');
-
+    let ol1 = document.createElement('ol');
     data.ingredients.forEach(element => {
         let li = document.createElement('li');
         li.textContent = element;
@@ -121,16 +117,17 @@ function createElements(data){
     h2_2.textContent = "Instructions";
     displayDiv.appendChild(h2_2);
 
-    let ol = document.createElement('ol');
-
+    let ol2 = document.createElement('ol');
     data.instructions.forEach(element => {
         let li = document.createElement('li');
         li.textContent = element;
-        ol.appendChild(li);
+        ol2.appendChild(li);
     });
-
-    displayDiv.appendChild(ol);
+    displayDiv.appendChild(ol2);
 };
+
+fetchData();
+
 /*
 Code  11-26 can be written using async:
   try {
